@@ -1,0 +1,44 @@
+﻿@model PWBackend.EmployeeJob
+
+@{
+    ViewBag.Title = "Delete Worker";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to remove this worker from this Job?</h3>
+<div>
+    <h4>@Html.DisplayFor(model => model.JobsAssigned.AssignCLIENT)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobsAssigned.AssignID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobsAssigned.AssignID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+
+

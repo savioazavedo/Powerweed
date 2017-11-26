@@ -1,0 +1,90 @@
+﻿@model PWBackend.JobsAssigned
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobsAssigned</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignJOBNUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignJOBNUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignCLIENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignCLIENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignWORK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignWORK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignAREA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignAREA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignSTARTTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignSTARTTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignENDTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignENDTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignINSTRUCTIONS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignINSTRUCTIONS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignTRUCK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignTRUCK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TextSENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TextSENT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AssignID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

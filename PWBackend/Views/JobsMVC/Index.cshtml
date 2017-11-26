@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PWBackend.Job>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<img src="~/Images/newlogo.png" alt="Powerweed logo" style="width:304px;height:110px;">
+<h2>
+    @Html.ActionLink("Create New", "Create")
+</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.JobNUMBER)*@
+            <h4>Job Number</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.JobCLIENTS)*@
+            <h4>Clients</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.JobWORK)*@
+            <h4>Work Description</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.JobAREA)*@
+            <h4>Work Area</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobNUMBER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobCLIENTS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobWORK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobAREA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JobID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JobID })
+        </td>
+    </tr>
+}
+
+</table>

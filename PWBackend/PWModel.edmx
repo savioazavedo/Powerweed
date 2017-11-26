@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="visionDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminPASSWORD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminPIN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeJobs">
+          <Key>
+            <PropertyRef Name="EmployeeJOBSID" />
+          </Key>
+          <Property Name="EmployeeJOBSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignID" Type="int" />
+          <Property Name="EmpNAME" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpNAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmpTYPE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpMOBILE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmpPHONE" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Fleet">
+          <Key>
+            <PropertyRef Name="FLEETID" />
+          </Key>
+          <Property Name="FLEETID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FLEETNumber" Type="varchar" MaxLength="150" />
+          <Property Name="FLEETName" Type="varchar" MaxLength="150" />
+          <Property Name="FLEETDescription" Type="varchar" MaxLength="150" />
+          <Property Name="FLEETRego" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobNUMBER" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobCLIENTS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobWORK" Type="varchar" MaxLength="100" />
+          <Property Name="JobAREA" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="JobsAssigned">
+          <Key>
+            <PropertyRef Name="AssignID" />
+          </Key>
+          <Property Name="AssignID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignJOBNUM" Type="varchar" MaxLength="50" />
+          <Property Name="AssignCLIENT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AssignWORK" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="AssignAREA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssignSTARTTIME" Type="datetime" />
+          <Property Name="AssignENDTIME" Type="datetime" />
+          <Property Name="AssignINSTRUCTIONS" Type="varchar" MaxLength="100" />
+          <Property Name="AssignTRUCK" Type="varchar" MaxLength="50" />
+          <Property Name="TextSENT" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__EmployeeJ__Assig__30C33EC3">
+          <End Role="JobsAssigned" Type="Self.JobsAssigned" Multiplicity="0..1" />
+          <End Role="EmployeeJobs" Type="Self.EmployeeJobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobsAssigned">
+              <PropertyRef Name="AssignID" />
+            </Principal>
+            <Dependent Role="EmployeeJobs">
+              <PropertyRef Name="AssignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="visionDatabaseModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeJobs" EntityType="Self.EmployeeJobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fleet" EntityType="Self.Fleet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobsAssigned" EntityType="Self.JobsAssigned" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__EmployeeJ__Assig__30C33EC3" Association="Self.FK__EmployeeJ__Assig__30C33EC3">
+            <End Role="JobsAssigned" EntitySet="JobsAssigned" />
+            <End Role="EmployeeJobs" EntitySet="EmployeeJobs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="visionDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="visionDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="visionDatabaseModel.Admin" />
+          <EntitySet Name="EmployeeJobs" EntityType="visionDatabaseModel.EmployeeJob" />
+          <EntitySet Name="JobsAssigneds" EntityType="visionDatabaseModel.JobsAssigned" />
+          <AssociationSet Name="FK__EmployeeJ__Assig__1AD3FDA4" Association="visionDatabaseModel.FK__EmployeeJ__Assig__1AD3FDA4">
+            <End Role="JobsAssigned" EntitySet="JobsAssigneds" />
+            <End Role="EmployeeJob" EntitySet="EmployeeJobs" />
+          </AssociationSet>
+          <EntitySet Name="Employees" EntityType="visionDatabaseModel.Employee" />
+          <EntitySet Name="Jobs" EntityType="visionDatabaseModel.Job" />
+          <EntitySet Name="Fleets" EntityType="visionDatabaseModel.Fleet" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdminPASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdminPIN" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeJob">
+          <Key>
+            <PropertyRef Name="EmployeeJOBSID" />
+          </Key>
+          <Property Name="EmployeeJOBSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignID" Type="Int32" />
+          <Property Name="EmpNAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobsAssigned" Relationship="visionDatabaseModel.FK__EmployeeJ__Assig__1AD3FDA4" FromRole="EmployeeJob" ToRole="JobsAssigned" />
+        </EntityType>
+        <EntityType Name="JobsAssigned">
+          <Key>
+            <PropertyRef Name="AssignID" />
+          </Key>
+          <Property Name="AssignID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignJOBNUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AssignCLIENT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AssignWORK" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AssignAREA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AssignINSTRUCTIONS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AssignTRUCK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TextSENT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EmployeeJobs" Relationship="visionDatabaseModel.FK__EmployeeJ__Assig__1AD3FDA4" FromRole="JobsAssigned" ToRole="EmployeeJob" />
+          <Property Name="AssignSTARTTIME" Type="DateTime" Precision="3" />
+          <Property Name="AssignENDTIME" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__EmployeeJ__Assig__1AD3FDA4">
+          <End Type="visionDatabaseModel.JobsAssigned" Role="JobsAssigned" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="visionDatabaseModel.EmployeeJob" Role="EmployeeJob" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="JobsAssigned">
+              <PropertyRef Name="AssignID" />
+            </Principal>
+            <Dependent Role="EmployeeJob">
+              <PropertyRef Name="AssignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpTYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMOBILE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobNUMBER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobCLIENTS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobWORK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="JobAREA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Fleet">
+          <Key>
+            <PropertyRef Name="FLEETID" />
+          </Key>
+          <Property Name="FLEETID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FLEETNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FLEETName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FLEETDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FLEETRego" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="visionDatabaseModelStoreContainer" CdmEntityContainer="visionDatabaseEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="visionDatabaseModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="AdminPIN" ColumnName="AdminPIN" />
+                <ScalarProperty Name="AdminPASSWORD" ColumnName="AdminPASSWORD" />
+                <ScalarProperty Name="AdminNAME" ColumnName="AdminNAME" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeJobs">
+            <EntityTypeMapping TypeName="visionDatabaseModel.EmployeeJob">
+              <MappingFragment StoreEntitySet="EmployeeJobs">
+                <ScalarProperty Name="EmpNAME" ColumnName="EmpNAME" />
+                <ScalarProperty Name="AssignID" ColumnName="AssignID" />
+                <ScalarProperty Name="EmployeeJOBSID" ColumnName="EmployeeJOBSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobsAssigneds">
+            <EntityTypeMapping TypeName="visionDatabaseModel.JobsAssigned">
+              <MappingFragment StoreEntitySet="JobsAssigned">
+                <ScalarProperty Name="AssignENDTIME" ColumnName="AssignENDTIME" />
+                <ScalarProperty Name="AssignSTARTTIME" ColumnName="AssignSTARTTIME" />
+                <ScalarProperty Name="TextSENT" ColumnName="TextSENT" />
+                <ScalarProperty Name="AssignTRUCK" ColumnName="AssignTRUCK" />
+                <ScalarProperty Name="AssignINSTRUCTIONS" ColumnName="AssignINSTRUCTIONS" />
+                <ScalarProperty Name="AssignAREA" ColumnName="AssignAREA" />
+                <ScalarProperty Name="AssignWORK" ColumnName="AssignWORK" />
+                <ScalarProperty Name="AssignCLIENT" ColumnName="AssignCLIENT" />
+                <ScalarProperty Name="AssignJOBNUM" ColumnName="AssignJOBNUM" />
+                <ScalarProperty Name="AssignID" ColumnName="AssignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="visionDatabaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmpPHONE" ColumnName="EmpPHONE" />
+                <ScalarProperty Name="EmpMOBILE" ColumnName="EmpMOBILE" />
+                <ScalarProperty Name="EmpTYPE" ColumnName="EmpTYPE" />
+                <ScalarProperty Name="EmpNAME" ColumnName="EmpNAME" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="visionDatabaseModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="JobAREA" ColumnName="JobAREA" />
+                <ScalarProperty Name="JobWORK" ColumnName="JobWORK" />
+                <ScalarProperty Name="JobCLIENTS" ColumnName="JobCLIENTS" />
+                <ScalarProperty Name="JobNUMBER" ColumnName="JobNUMBER" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fleets">
+            <EntityTypeMapping TypeName="visionDatabaseModel.Fleet">
+              <MappingFragment StoreEntitySet="Fleet">
+                <ScalarProperty Name="FLEETRego" ColumnName="FLEETRego" />
+                <ScalarProperty Name="FLEETDescription" ColumnName="FLEETDescription" />
+                <ScalarProperty Name="FLEETName" ColumnName="FLEETName" />
+                <ScalarProperty Name="FLEETNumber" ColumnName="FLEETNumber" />
+                <ScalarProperty Name="FLEETID" ColumnName="FLEETID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

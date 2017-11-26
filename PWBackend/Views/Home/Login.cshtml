@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@model PWBackend.Admin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 95px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        align-content:center;
+    }
+</style>
+
+ <div style="text-align:center; padding:30px"><img src="~/Images/newlogo.png" alt="Powerweed logo" style="width:304px;height:110px" /></div>
+
+
+    @using (Html.BeginForm("", "", FormMethod.Post))
+    {
+        //this  is for create form tag
+        @Html.AntiForgeryToken()          
+        // this is for prevent CSRF attack
+        @Html.ValidationSummary(true)
+        if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table align="center" cellpadding="4">
+            <tr>
+                <td>Username:</td>
+                <th>@Html.TextBoxFor(a => a.AdminNAME)</th>
+                <th>@Html.ValidationMessageFor(a => a.AdminNAME)</th>
+            </tr> 
+
+            <tr>
+                <td>Password:</td>
+                <th>@Html.PasswordFor(a => a.AdminPASSWORD)</th>
+                <th>@Html.ValidationMessageFor(a => a.AdminPASSWORD)</th>
+            </tr>            
+        </table>
+        <table align="center" cellpadding="10">
+            <tr><td><input type="submit" value="Login" class="button" /></td></tr>
+        </table>
+    }
+
+@* This below line is for create javascript section *@
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

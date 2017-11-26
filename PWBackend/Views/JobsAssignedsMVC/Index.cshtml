@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PWBackend.JobsAssigned>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Jobs Assigned To Employees</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignJOBNUM)*@
+            <h4>Job Number</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignCLIENT)*@
+            <h4>Client</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignWORK)*@
+            <h4>Work</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignAREA)*@
+            <h4>Work Area</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignSTARTTIME)*@
+            <h4>Start Time</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignENDTIME)*@
+            <h4>End Time</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignINSTRUCTIONS)*@
+            <h4>Instructions</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignTRUCK)*@
+            <h4>Assigned Truck</h4>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TextSENT)*@
+            <h4>Text Sent</h4>
+        </th>
+        <th>
+            <h4>Employees Assigned</h4>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignJOBNUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignCLIENT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignWORK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignAREA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignSTARTTIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignENDTIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignINSTRUCTIONS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignTRUCK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TextSENT)
+        </td>
+        <td>
+            @{
+                foreach(var employee in item.EmployeeJobs)
+                {
+                  @employee.EmpNAME <br />
+                }
+             }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssignID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssignID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssignID })
+        </td>
+    </tr>
+}
+
+</table>

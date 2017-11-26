@@ -1,0 +1,50 @@
+﻿@model PWBackend.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpMOBILE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpMOBILE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpPHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpPHONE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

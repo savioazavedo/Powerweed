@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PWBackend.JobsAssigned>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reports Screen</h2>
+<h5>- You can view your past jobs that you've assigned to your employees here.</h5>
+
+@*@Html.EJ().DatePicker("DatePick").DateFormat("MM/dd/yyyy").ShowOtherMonths(false).EnableRTL(false).Locale("en-US")*@
+
+@(Html.EJ().Grid<object>("Localization")
+
+    .Datasource((IEnumerable<object>)ViewBag.datasource)
+
+    .ToolbarSettings(toolBar => toolBar.ShowToolbar().ToolbarItems(items =>
+    {
+        items.AddTool(ToolBarItems.ExcelExport);
+    }))
+
+    .AllowPaging()
+
+    .AllowFiltering()
+
+    .AllowResizeToFit()
+
+    .AllowTextWrap()
+
+    .AllowSorting()
+
+    .EnableHeaderHover()
+
+    .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+
+    .ToolbarSettings(toolbar => { toolbar.ShowToolbar().ToolbarItems(items => { items.AddTool(ToolBarItems.Search); }); })
+
+    .SortSettings(sort => sort.SortedColumns(col => col.Field("AssignID").Direction(SortOrder.Descending).Add()))
+
+    .Columns(col =>
+
+    {
+        col.Field("AssignID").HeaderText("ID").TextAlign(TextAlign.Right).Width(75).Add();
+
+        col.Field("AssignJOBNUM").HeaderText("Job Number").TextAlign(TextAlign.Right).Width(75).Add();
+
+        col.Field("AssignCLIENT").HeaderText("Client").Width(100).Add();
+
+        col.Field("AssignWORK").HeaderText("Description").Width(100).Add();
+
+        col.Field("AssignAREA").HeaderText("Area").Width(80).Add();
+
+        col.Field("AssignSTARTTIME").HeaderText("Start Time").Width(100).Add();
+
+        col.Field("AssignENDTIME").HeaderText("End Time").Width(100).Add();
+
+        col.Field("Hours").HeaderText("Hours").Width(100).Add();
+
+        col.Field("AssignINSTRUCTIONS").HeaderText("Instructions").Width(100).Add();
+
+        col.Field("AssignTRUCK").HeaderText("Fleet").Width(100).Add();
+
+        col.Field("TextSENT").HeaderText("Text Sent").Width(100).Add();
+
+        col.Field("EmpNAME").HeaderText("Employee Name").Width(100).Add();
+
+    })
+
+//.ChildGrid(child =>
+//{
+//    child.Datasource((IEnumerable<object>)ViewBag.datasource2)
+//       .QueryString("AssignID")
+//       .AllowPaging()
+//       .PageSettings(page => page.PageSize(5))
+//       .Columns(col =>
+//       {
+//           col.Field("Name").HeaderText("Employee Name").Width(75).Add();
+//           col.Field("AssignID").HeaderText("ID").Width(75).Add();
+//       });
+//})
+
+)
+

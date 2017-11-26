@@ -1,0 +1,42 @@
+﻿@model PWBackend.Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminPASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminPASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminPIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminPIN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
